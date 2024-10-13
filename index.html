@@ -1,53 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Responsive Collapsing Sidebar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vyapar</title>
     <script src="https://kit.fontawesome.com/f33568eb55.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <div class="overlay"></div>
-            <div class="hamburger-menu" >
-                <i class="fa-solid fa-bars"></i>
+        <div class="hamburger-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <aside class="sidebar">
+            <ul>
+                <li><i class="fa-solid fa-plus"></i><span>New</span></li>
+                <li><i class="fa-regular fa-pen-to-square"></i><span>Update</span></li>
+                <li><i class="fa-solid fa-ban"></i><span>Cancel</span></li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            <header class="main-nav">Vyapar</header>
+            <div id="chat-messages" class="content">
+                <!-- Chat messages will appear here -->
             </div>
-            <aside class="sidebar">
-            
-            
-            <!-- <img class="hamburger-menu"  src="interface.png" alt="hamburger menu"/>  -->
-                <ul>
-                    <li><i class="fa-solid fa-plus"></i><span>new</span></li>
-                    <li><i class="fa-regular fa-pen-to-square"></i><span>Update</span></li>
-                    <li><i class="fa-solid fa-ban"></i><span>Cancel</span></li>
-                </ul>
-            </aside>
-            <main>
-                
-                <header class="main-nav">Vyapar</header>
-                <div class="main-content">
-                    <div class="scrollable">
-                        <h1>Main content</h1>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet assumenda ipsam eos consequuntur ut veniam recusandae 
-                         nobis facilis ea voluptatem,
-                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis odio doloremque expedita nulla perspiciatis ut quam quaerat ad, aspernatur nesciunt, pariatur quae impedit explicabo sed laborum suscipit earum dolorum magni.
-                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse cum consequatur natus! Illum repellendus modi autem deleniti dignissimos optio provident distinctio, praesentium aliquid, officia ex voluptatibus recusandae inventore. Maxime, temporibus?
-                         Impedit, ipsum quo? Fugiat doloribus ullam itaque tenetur dolorem sequi soluta ipsa quibusdam porro cum velit quo minus, eveniet maiores facere exercitationem provident? Veniam, voluptas doloremque. Quam dicta possimus doloribus.
-                         Incidunt doloremque in voluptas atque placeat soluta voluptatum commodi adipisci quam ab voluptatem modi rem dolorum ipsam consectetur voluptate nobis doloribus libero molestiae sit similique eligendi, optio fugiat. Voluptas, assumenda?
-                         Error earum, esse cumque fugiat ex tempora eaque soluta inventore recusandae animi dolorem. Quas sint odit aspernatur nisi numquam! Atque porro quisquam incidunt reiciendis recusandae, ipsam consectetur harum magni. Tempora?
-                         Velit recusandae perspiciatis, provident reprehenderit error aspernatur optio distinctio libero ab rerum doloribus labore, possimus voluptatum, soluta similique nemo quod ipsam id cum officiis corporis? Placeat aspernatur laborum repellendus a.
-                         Doloribus aliquid repudiandae culpa error maiores facilis enim sunt voluptate quam aspernatur odit accusamus, harum quis maxime fugiat numquam minus quod, necessitatibus quaerat aliquam nam quas fuga. Ea, animi deleniti.
-                         Minima laborum quam, maiores quo voluptas aperiam alias autem dignissimos temporibus aut blanditiis consectetur officiis tempore incidunt magnam quod doloribus doloremque eius, obcaecati magni est veniam! Saepe explicabo ut quod!
-                         Corrupti nobis consequuntur minus laboriosam consectetur expedita saepe pariatur nihil perspiciatis sint ipsam blanditiis nulla nesciunt optio totam quod magni odio sed commodi perferendis, exercitationem animi ullam quos nisi! Explicabo.
-                         A tempore, sint odio libero nesciunt quaerat. 55Velit, minus suscipit! Distinctio ratione perspiciatis sequi doloribus. Impedit, veniam incidunt doloribus repellendus alias maxime accusamus reprehenderit et laboriosam, architecto vitae. Pariatur, delectus!
-                         Optio deleniti dolorum nulla sapiente, sint impedit, pariatur ad aspernatur, inventore velit eius veritatis. Officiis, unde? Illo porro dicta in iure fuga totam ut corrupti ab veritatis quidem, expedita quis.
-                         
-                         voluptas labore molestiae. Iure suscipit,56 dolorum excepturi animi quia autem?</p>
-                     </div>
-                </div>       
-            </main>
-        <!-- </div> -->
+            <div class="input-area">
+                <form id="chat-form">
+                    <textarea id="user-input" placeholder="Message Gemini..." rows="1"></textarea>
+                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </main>
     </div>
-    
     <script src="app.js"></script>
 </body>
 </html>

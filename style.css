@@ -1,175 +1,205 @@
 * {
     margin: 0;
-    box-sizing: border-box; /* Added for better layout control */
+    padding: 0;
+    box-sizing: border-box;
 }
-body{
-    color: #ffffff;
+
+body {
+    font-family: Arial, sans-serif;
+    color: #e7e7e7;
+    background-color: #121214; /* Slightly darker background */
 }
-ul {
-    margin: 0;
-    padding: 0;  
-    list-style: none; /* Moved here to avoid repetition */
-}
-i{
-    font-size: 18px;
-    /* font-weight: 300; */
-}
-.container{
-    /* background-color: aqua; */
+
+.container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
     height: 100vh;
-    display: flex;
-    /* overflow-y: hidden; */
+    overflow: hidden;
 }
-.hamburger-menu{
+
+.hamburger-menu {
     position: fixed;
-    left: 0;
-    margin-top: 16px;
-    margin-left: 20px;
-    width: 36px;
+    top: 16px;
+    left: 20px;
     z-index: 1002;
     cursor: pointer;
+    font-size: 24px;
+    color: #86efac;
 }
-
 
 .sidebar {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    background-color: #1a1a1d; /* Darker sidebar */
+    width: 260px;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+    overflow-y: auto;
     position: fixed;
-    width: 250px; /* Adjust sidebar width as needed */
-    background-color: #333333;
-    height: 100%;
-    padding: 0 20px;
-    
-    transition: width 0.3s ease-in-out;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1001;
+    /* border-right: 1px solid #86efac; */
 }
 
-.sidebar.inactive {
+.sidebar.collapsed {
     width: 60px;
 }
 
-.sidebar ul{
-    padding-top: 200px;
+.sidebar ul {
+    list-style-type: none;
+    padding-top: 50px;
 }
 
-.sidebar li{
+.sidebar li {
     display: flex;
     align-items: center;
+    padding: 10px 0;
     cursor: pointer;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    color: #e7e7e7; /* Changed to white for better contrast */
+}
+
+.sidebar li:hover {
+    background-color: #2a2a2d; /* Lighter hover color */
+    color: #86efac; /* Accent color on hover */
 }
 
 .sidebar li i {
-    flex-shrink: 0;
+    font-size: 18px;
+    margin-right: 10px;
+    min-width: 24px;
+    text-align: center;
+    color: #86efac; /* Icons always in accent color */
 }
 
-.sidebar li span{
-    
-    margin-left: 10px;
-    opacity: 1;
-    transition: opacity 0.3s ease-out, max-width 0.3s ease-out, margin-left 0.3s ease-out;
-    white-space: nowrap;
-    overflow: hidden;
-    width: auto;
-    max-width: 250px; 
+.sidebar.collapsed li span {
+    display: none;
 }
 
+.main-content {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+    width: calc(100% - 260px);
+    margin-left: 260px;
+    height: 100vh;
+}
 
-
-.sidebar.inactive li span {
-    opacity: 0;
-    max-width: 0;
-    margin-left: 0;
-
+.main-content.sidebar-collapsed {
+    width: calc(100% - 60px);
+    margin-left: 60px;
 }
 
 .main-nav {
+    background-color: #1a1a1d; /* Darker nav */
+    padding: 16px 60px;
+    /* border-bottom: 1px solid #86efac; */
+    font-size: 22px;
+    font-weight: bold;
+    color: #86efac; /* Accent color for nav text */
+}
+
+.content {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.input-area {
+    padding: 20px;
+    border-top: 1px solid #2a2a2d; /* Softer border */
+    background-color: #1a1a1d; /* Darker input area */
+}
+
+#chat-form {
+    display: flex;
+    align-items: center;
+}
+
+#user-input {
+    flex-grow: 1;
+    padding: 12px;
+    border: 1px solid #2a2a2d;
+    border-radius: 24px;
+    font-size: 16px;
+    resize: none;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #2a2a2d;
+    color: #e7e7e7;
+}
+
+#user-input:focus {
+    border-color: #86efac; /* Accent color on focus */
+    outline: none;
+}
+
+#chat-form button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #86efac;
+    cursor: pointer;
+    padding: 0 12px;
+}
+
+.overlay {
+    display: none;
     position: fixed;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.63);
-    width: calc(100% - 250px); /* Adjust width to account for sidebar */
-    left: 250px; /* Align with the sidebar */
-    background-color: #1A1A1A;
-    transition: left 0.3s ease-in-out, width 0.3s ease-in-out; /* Added width transition */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.message {
+    margin-bottom: 20px;
     padding: 10px;
+    border-radius: 8px;
+    max-width: 80%;
 }
 
-.main-nav.inactive {
-    left: 60px; /* Adjusted for collapsed sidebar */
-    width: calc(100% - 60px); /* Adjust width for collapsed sidebar */
+.user {
+    background-color: #2a2a2d; /* Darker user message */
+    align-self: flex-end;
+    margin-left: auto;
+    border-left: 3px solid #86efac; /* Accent border */
 }
 
-
-.main-content {
-    background-color: #1A1A1A;
-    
-    margin-top: 48px;
-    margin-left: 250px; /* Align with the sidebar */
-    padding: 24px;
-    transition: margin 0.3s ease-in-out;
+.ai {
+    background-color: #1a1a1d; /* Darker AI message */
+    align-self: flex-start;
+    border-right: 3px solid #86efac; /* Accent border */
 }
 
-.main-content.inactive {
-    margin-left: 60px; /* Adjusted for collapsed sidebar */
-}
-
-/* Responsive Styles */
 @media (max-width: 768px) {
     .sidebar {
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        left: -250px; /* Start off-screen */
-        top: 0;
-        z-index: 1000;
-        transition: left 0.3s ease-in-out;
+        transform: translateX(-100%);
+        width: 260px;
+    }
+
+    .sidebar.collapsed {
+        width: 260px;
     }
 
     .sidebar.active {
-        left: 0; /* Slide in when active */
-    }
-
-    .sidebar.inactive {
-        left: -250px;
-    }
-
-    .main-nav {
-        left: 0;
-        width: 100%;
+        transform: translateX(0);
     }
 
     .main-content {
-        margin-left: 0;
-        width: 100%;
-    }
-
-    .hamburger-menu {
-        position: fixed;
-        left: 10px;
-        top: 10px;
-        z-index: 1001;
-    }
-
-    .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 999;
+        width: 100% !important;
+        margin-left: 0 !important;
     }
 
     .overlay.active {
         display: block;
-    }
-}
-@media (max-width: 480px) {
-    .hamburger-menu {
-        width: 30px; /* Smaller hamburger icon */
-    }
-
-    .main-nav {
-        padding: 5px; /* Adjust padding */
-    }
-
-    .main-content {
-        padding: 16px; /* Adjust padding */
     }
 }
