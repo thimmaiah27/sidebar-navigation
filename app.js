@@ -1,20 +1,45 @@
-const btnClose = document.querySelector('.close-btn');
-const sideBar = document.querySelector('.sidebar');
-const sidebarToggle = document.querySelector('.sidebar-toggle');
+const sidebar = document.querySelector('.sidebar');
+const header = document.querySelector('.main-nav');
+const main = document.querySelector('.main-content');
+const sidebarToggle = document.querySelector('.hamburger-menu');
+const overlay = document.querySelector('.overlay');
 
-sidebarToggle.addEventListener('click',function(){
-    //first solve to toggle sideBar
+const toggleSidebar = () => {
+    sidebar.classList.toggle('active');
+    sidebar.classList.toggle('inactive');
+    header.classList.toggle('inactive');
+    main.classList.toggle('inactive');
+    overlay.classList.toggle('active');
+};
 
-    // if(sideBar.classList.contains('show-sidebar')){
-    //     sideBar.classList.remove('show-sidebar');
-    // }else{
-    //     sideBar.classList.add('show-sidebar');
-    // }
+sidebarToggle.addEventListener('click', toggleSidebar);
+overlay.addEventListener('click', toggleSidebar);
 
-    //second solve toggle sidebar
-    sideBar.classList.toggle('show-sidebar')
-})
+// Close sidebar when clicking outside
+document.addEventListener('click', (event) => {
+    const isClickInsideSidebar = sidebar.contains(event.target);
+    const isClickOnHamburger = sidebarToggle.contains(event.target);
+    
+    if (!isClickInsideSidebar && !isClickOnHamburger && sidebar.classList.contains('active')) {
+        toggleSidebar();
+    }
+});
 
-btnClose.addEventListener('click',function(){
-    sideBar.classList.remove("show-sidebar");
-})
+// Initial state setup
+const setInitialState = () => {
+    if (window.innerWidth <= 768) {
+        sidebar.classList.add('inactive');
+        header.classList.remove('inactive');
+        main.classList.remove('inactive');
+    } else {
+        sidebar.classList.remove('inactive');
+        header.classList.remove('inactive');
+        main.classList.remove('inactive');
+    }
+};
+
+// Run initial state setup
+setInitialState();
+
+// Update state on window resize
+window.addEventListener('resize', setInitialState);
